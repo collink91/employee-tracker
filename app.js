@@ -25,7 +25,7 @@ const connection = mysql.createConnection({
       choices: [
         { value: "view-employees", name: "View All Employees" },
         { value: "add-employee", name: "Add Employee" },
-        { value: "update-employee", name: "Update Employee Role" },
+        { value: "update-role", name: "Update Employee Role" },
         { value: "view-roles", name: "View All Roles" },
         { value: "add-role", name: "Add Role" },
         { value: "view-departments", name: "View All Departments" },
@@ -34,3 +34,30 @@ const connection = mysql.createConnection({
       name: "options",
     },
   ];
+
+  //Initiates list options prompt
+function promptList() {
+    return inquirer.prompt(listOptions).then((response) => {
+        if (response.options === "view-employees") {
+            return viewEmployees();
+      }
+      if (response.options === "add-employee") {
+        return addEmployee();
+      }
+      if (response.options === "update-role") {
+        return updateRole();
+      }
+      if (response.options === "view-roles") {
+        return viewRoles();
+      }
+      if (response.options === "add-role") {
+        return addRole();
+      }
+        if (response.options === "view-departments") {
+        return viewDepartments();
+      }
+      if (response.options === "add-department") {
+        return addDepartment();
+      }
+    });
+  }
